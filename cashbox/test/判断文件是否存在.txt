@@ -1,0 +1,39 @@
+﻿方法一：access函数判断文件夹或者文件是否存在
+函数原型： int access(const char *filename, int mode);
+所属头文件：io.h
+filename：可以填写文件夹路径或者文件路径
+mode：0 （F_OK） 只判断是否存在
+           2 （R_OK） 判断写入权限
+           4 （W_OK） 判断读取权限
+           6 （X_OK） 判断执行权限
+用于判断文件夹是否存在的时候，mode取0，判断文件是否存在的时候，mode可以取0、2、4、6。 若存在或者具有权限，返回值为0；不存在或者无权限，返回值为-1。
+错误代码
+EACCESS 参数pathname 所指定的文件不符合所要求测试的权限。
+EROFS 欲测试写入权限的文件存在于只读文件系统内。
+EFAULT 参数pathname指针超出可存取内存空间。
+EINVAL 参数mode 不正确。
+ENAMETOOLONG 参数pathname太长。
+ENOTDIR 参数pathname为一目录。
+ENOMEM 核心内存不足
+ELOOP 参数pathname有过多符号连接问题。
+EIO I/O 存取错误。
+特别提醒：使用access()作用户认证方面的判断要特别小心，例如在access()后再做open()的空文件可能会造成系统安全上的问题。
+ 实例：
+#include <stdio.h>
+#include <io.h>
+int main(void)
+{
+    if ( !access("C://windows",0) )
+         puts("C://windows EXISITS!");
+    else
+         puts("C://windows DOESN'T EXISIT!");
+    return 0;
+}
+
+
+方法二：fopen函数判断文件是否存在
+函数原型：FILE *fopen (char *filename, char *type);
+filename：文件路径
+type：打开文件的方式（有r、w、r+、w+、a、rb、wb等等）
+用于判断文件是否存在可以使用 r 或者 rb ，因为使用 其它方式的话，可能会自动建立文件。 返回值为NULL（打不开）和正数（能打开）。
+特别提醒：用这种方法做出的判断是不完全正确的，因为有的文件存在，但是可能不可读。

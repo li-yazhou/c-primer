@@ -1,0 +1,58 @@
+# Project: cashbox
+# Makefile created by Dev-C++ 5.6.3
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = main/main.o module/find.o tool/tool.o view/view.o module/income.o module/expend.o module/count.o module/quit.o module/registerUser.o module/login.o module/updatePass.o
+LINKOBJ  = main/main.o module/find.o tool/tool.o view/view.o module/income.o module/expend.o module/count.o module/quit.o module/registerUser.o module/login.o module/updatePass.o
+LIBS     = -L"E:/pro_setup/develop_kit/Dev/Dev-Cpp/MinGW64/lib32" -L"E:/pro_setup/develop_kit/Dev/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -m32 -pg
+INCS     = -I"E:/pro_setup/develop_kit/Dev/Dev-Cpp/MinGW64/include" -I"E:/pro_setup/develop_kit/Dev/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"E:/pro_setup/develop_kit/Dev/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include"
+CXXINCS  = -I"E:/pro_setup/develop_kit/Dev/Dev-Cpp/MinGW64/include" -I"E:/pro_setup/develop_kit/Dev/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"E:/pro_setup/develop_kit/Dev/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include" -I"E:/pro_setup/develop_kit/Dev/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++"
+BIN      = cashbox.exe
+CXXFLAGS = $(CXXINCS) -m32 -pg
+CFLAGS   = $(INCS) -m32 -pg
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main/main.o: main/main.c
+	$(CC) -c main/main.c -o main/main.o $(CFLAGS)
+
+module/find.o: module/find.c
+	$(CC) -c module/find.c -o module/find.o $(CFLAGS)
+
+tool/tool.o: tool/tool.c
+	$(CC) -c tool/tool.c -o tool/tool.o $(CFLAGS)
+
+view/view.o: view/view.c
+	$(CC) -c view/view.c -o view/view.o $(CFLAGS)
+
+module/income.o: module/income.c
+	$(CC) -c module/income.c -o module/income.o $(CFLAGS)
+
+module/expend.o: module/expend.c
+	$(CC) -c module/expend.c -o module/expend.o $(CFLAGS)
+
+module/count.o: module/count.c
+	$(CC) -c module/count.c -o module/count.o $(CFLAGS)
+
+module/quit.o: module/quit.c
+	$(CC) -c module/quit.c -o module/quit.o $(CFLAGS)
+
+module/registerUser.o: module/registerUser.c
+	$(CC) -c module/registerUser.c -o module/registerUser.o $(CFLAGS)
+
+module/login.o: module/login.c
+	$(CC) -c module/login.c -o module/login.o $(CFLAGS)
+
+module/updatePass.o: module/updatePass.c
+	$(CC) -c module/updatePass.c -o module/updatePass.o $(CFLAGS)
